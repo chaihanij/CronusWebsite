@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="images/equinox-logo-16x16.png">
+        <title>
+            Welcome Cronus Team (equinox platform)
+        </title>
+        <!-- import script -->
+        <script type="text/javascript" src="lib/suportbowser/ie-emulation-modes-warning.js"></script>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- jquery -->
+        <script type="text/javascript" src="lib/jquery/jquery-1.11.1.js"></script>
+        <!-- bootstrap -->
+        <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+        <script src="lib/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+        <!-- angularjs -->
+        <script type="text/javascript" src="lib/angular/angular.js"></script>
+        <script type="text/javascript" src="lib/angular/angular-route.js"></script>
+        <script type="text/javascript" src="lib/angular/angular-resource.js"></script>
+        <!-- ui.bostrap -->
+        <script type="text/javascript" src="lib/ui.bootstrap/angular-ui-bootstrap.js"></script>
+    </head>
+    <body ng-app="cronusweb" ng-controller="MainCtrl">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-static-top">
+               <!--  <div class="container"> -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                         </button>
+                        <a class="navbar-brand" href="#">Cronus</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li ng-class="{ active: isActive('/Home') }"><a href="#/Home">Home</a></li>
+                            <li ng-class="{ active: isActive('/IP') }"><a href="#/IP">IP</a></li>
+                            <li ng-class="{ active: isActive('/Lab') }"><a href="#/Lab">LAB</a></li>
+                            <li ng-class="{ active: isActive('/Document') }"><a href="#/Document">Document</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right" style="margin-right: 30px;">
+                            <li ng-show="!isLoggedIn();"><a href="#/Login">Login</a></li>
+                            <li ng-show="isLoggedIn();" class="dropdown">
+                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Logged in as <b> {{isUserLogin.username}}<span class="caret"></b></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#/Setting">Setting</a></li>
+                                    <li class="divider"></li>
+                                    <li ng-click=logout();><a>Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                <!-- </div> -->
+            </nav>
+            <div ng-view></div>
+        </div>
+        <!-- Import app.js -->
+        <script type="text/javascript" src="js/app.js"></script>
+        <!-- Import controllers -->
+        <script type="text/javascript" src="js/controllers/doc.js"></script>
+        <script type="text/javascript" src="js/controllers/home.js"></script>
+        <script type="text/javascript" src="js/controllers/ip.js"></script>
+        <script type="text/javascript" src="js/controllers/lab.js"></script>
+        <!-- Import service.js -->
+        <script type="text/javascript" src="js/service/services.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,37 @@
+.icon-dropbox {
+  background-image: url(dropbox.png);
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 45px;
+  line-height: 45px;
+  vertical-align: text-bottom;
+  width: 45px;
+}
+.icon-dropbox.folder-generic { background-position: -3px -3px }
+.icon-dropbox.folder-user { background-position: -53px -3px}
+.icon-dropbox.folder-public { background-position: -103px -3px}
+.icon-dropbox.folder-app { background-position: -153px -3px}
+.icon-dropbox.folder-camera { background-position: -203px -3px}
+
+.icon-dropbox.file-generic { background-position: -3px -52px}
+.icon-dropbox.file-text { background-position: -53px -52px}
+.icon-dropbox.file-word { background-position: -103px -52px}
+.icon-dropbox.file-acrobat { background-position: -153px -52px}
+.icon-dropbox.file-excel { background-position: -203px -52px}
+
+.icon-dropbox.file-code { background-position: -3px -103px;}
+.icon-dropbox.file-webcode { background-position: -53px -103px;}
+.icon-dropbox.file-photoshop { background-position: -103px -103px;}
+.icon-dropbox.file-flash { background-position: -153px -103px;}
+.icon-dropbox.file-lllustrator { background-position: -203px -103px;}
+
+.icon-dropbox.file-compressed { background-position: -3px -153px;}
+.icon-dropbox.file-package { background-position: -53px -153px;}
+.icon-dropbox.file-film { background-position: -103px -153px;}
+.icon-dropbox.file-sound { background-position: -153px -153px;}
+.icon-dropbox.file-disc { background-position: -203px -153px;}
+
+.icon-dropbox.file-gear { background-position: -3px -203px;}
+.icon-dropbox.file-picture { background-position: -53px -203px;}
+.icon-dropbox.file-powerpoint { background-position: -103px -203px;}

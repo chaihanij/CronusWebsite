@@ -1,0 +1,115 @@
+<!-- import css -->
+<link href="css/doc/bootstrap.icon-large.css" rel="stylesheet">
+<link href="css/doc/dropbox.css" rel="stylesheet">
+<!-- <div class="container"> -->
+	<div class="row">
+		<div class="col-md-2">
+				<h1 style="margin-top: -10px">Document</h1>
+		</div>
+		<div class="col-md-10">
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-7" >
+			<h4>
+            	<a ng-repeat="subpath in urlPath track by $index" ng-click=onclickPath($index);> {{subpath}} /</a>
+        	</h4>	
+		</div>
+		<div class="col-md-5">
+			<div style="float: right !important;">
+				<button id="updloadBTN" type="button" class="btn btn-default  btn-lg" popover="Upload" popover-trigger="mouseenter" style="padding:5px;5px" ng-click="uploadFile('lg');"><i class="icon-large icon-upload"></i></button>
+				<button ng-click="newFolder();"id="newfolderBTN" type="button" class="btn btn-default  btn-lg" popover="New Folder" popover-trigger="mouseenter" style="padding:5px;5px"><i class="icon-large icon-folder-plus"></i></button>
+				<input id="searchBTN" type="text" class="form-control" placeholder="Search" style="display: initial;width:200px"  ng-model="search">
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+                        <tr style="height= 50px;">
+                            <th colspan="2"><a ng-click="predicate = 'name'; reverse=false">Name</a>(<a href="" ng-click="predicate = '-name'; reverse=false">^</a>)</th>
+                            <th><a ng-click="predicate = 'kind'; reverse=false">Kind(<a href="" ng-click="predicate = '-kind'; reverse=false">^</a>)</a></th>                               
+                            <th><a ng-click="predicate = 'size'; reverse=false">Size(<a href="" ng-click="predicate = '-size'; reverse=false">^</a>)</a></th>
+                            <th><a ng-click="predicate = 'modified'; reverse=false">Modified</a>(<a href="" ng-click="predicate = '-modified'; reverse=false">^</a>)</th>
+                            <th><th>
+                            <th ng-show="userLogin.role == 'admin'"></th><!-- || userLogin.role == 'user' -->
+                            <th ng-show="userLogin.role == 'admin'"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="cataloging in catalogings | orderBy:predicate:reverse| filter:search" ng-mouseover="mouseOverCataloging(cataloging);">
+                            <td class="td-middle">
+                            <i class="icon-dropbox" ng-class="cataloging.icon" ng-click="catalogingClick(cataloging);"></i>
+                            </td>
+                            <td class="td-middle">
+                                <a ng-click="catalogingClick(cataloging);">{{cataloging.name}}</a>
+                            </td>
+
+                            <td class="td-middle">{{cataloging.kind}}</td>
+                            <td class="td-middle">{{cataloging.size}}</td>
+                            <td class="td-middle">{{cataloging.mtime}}</td>
+                            <td>
+                                <button ng-show="cataloging.kind != 'folder'" class="btn btn-default" popover="Download" popover-trigger="mouseenter" ng-click="download(cataloging);">
+                                    <span  class="glyphicon glyphicon-download" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                            <td ng-show="userLogin.role == 'admin'">
+                            	<button class="btn btn-default" ng-click="editName($index,cataloging);" popover="Rename" popover-trigger="mouseenter">
+                            		<span  class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            	</button>
+                            </td>
+                            <td ng-show="userLogin.role == 'admin'">
+                            	<button class="btn btn-default" ng-click="moveToTrash($index,cataloging);" popover="Delete" popover-trigger="mouseenter">
+                            		<span  class="glyphicon glyphicon-trash" aria-hidden="true" ></span>
+                            	</button>
+                            </td>
+                        </tr>    
+                    </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+<!-- </div> -->
+
+ <script type="text/ng-template" id="UploadModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Upload file</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-4">
+                Select a File to Upload
+            </div>
+            <div class="col-sm-4">
+                 <input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1">
+            </div>
+            <div class="col-sm-10">
+                <div ng-show="files.length">
+                 <div ng-repeat="file in files.slice(0)">
+                        <span>{{file.webkitRelativePath || file.name}}</span>
+                        (<span ng-switch="file.size > 1024*1024"><span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span><span ng-switch-default>{{file.size / 1024 | number:2}} kB</span></span>)
+                    </div>
+                    <div ng-show="progressVisible">
+                        <progressbar max="100" value="progress"><span style="color:black; white-space:nowrap;">{{progress}} / 100</span></progressbar> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-show="files.length" class="btn btn-default" ng-click="upload()">Upload</button>
+        <button class="btn btn-default" ng-click="cancel();">Done</button>
+    </div>
+</script>
+

@@ -1,0 +1,11 @@
+<form name="loginForm" class="form-signin" role="form" ng-submit="attemptLogin(credentials)" novalidate>
+    <h2 class="form-signin-heading">Please Login</h2>
+    <label for="inputEmail" class="sr-only"></label>
+    <input name="username" type="text" id="inputEmail" class="form-control" placeholder="Username"  ng-model="credentials.username" required autofocus >
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input name="password" type="password" id="password" class="form-control" placeholder="Password" ng-model="credentials.password" required>
+    <button class="btn btn-primary form-control" type="submit" ng-disabled="loginForm.$invalid">Login</button>
+    <div ng-show="!dataLogin.status">
+   		<div  style="color:red;">{{dataLogin.messages}}</div>
+   	</div>
+ </form>
