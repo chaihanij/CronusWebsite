@@ -119,6 +119,7 @@ function removeFile (data) {
     return responseData;
 };
 function renameFile(data) {
+    console.log(data);
     var newName = data.newName;
     var name = data.folder.name;
     var oldPath = data.folder.urlpath;

@@ -144,7 +144,7 @@ function($scope, $rootScope, $location, $http, $window, $modal, $log, UserLoginS
    	            	data: dataFolder 
    	        	};
    	        	$http(configHTTP).success(function (data, status, headers, config) {
-   	          		console.log(data);
+   	          		// console.log(data);
    	          		if (data.code == true) {
    	           			for (var i = 0 ;i < $scope.catalogings.length  ;i ++ ){
    	           				// console.log(cataloging.name == $scope.catalogings[i].name);
