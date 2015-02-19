@@ -31,41 +31,51 @@
         <script type="text/javascript" src="lib/ui.bootstrap/angular-ui-bootstrap.js"></script>
     </head>
     <body ng-app="cronusweb" ng-controller="MainCtrl">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <!--  <div class="container"> -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                 </button>
+                <a class="navbar-brand" href="#">Cronus</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{ active: isActive('/Home') }"><a href="#/Home">Home</a></li>
+                    <li ng-class="{ active: isActive('/IP') }"><a href="#/IP">IP</a></li>
+                    <li ng-class="{ active: isActive('/Lab') }"><a href="#/Lab">LAB</a></li>
+                    <li ng-class="{ active: isActive('/Document') }"><a href="#/Document">Document</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 30px;">
+                     <li class="dropdown" ng-show="isUserLogin.role == 'admin'">
+                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Management<span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="">Management IP</a></li>
+                        <li><a href="">Management Lab</a></li>
+                        <li><a href="">Management Document</a></li>
+                        <li class="divider"></li>
+                        <li><a href="">Management Document</a></li>
+                      </ul>
+                    </li>
+                    <li ng-show="!isLoggedIn();"><a href="#/Login">Login</a></li>
+                    <li ng-show="isLoggedIn();" class="dropdown">
+                        <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Logged in as <b> {{isUserLogin.username}}<span class="caret"></b></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#/Setting">Setting</a></li>
+                            <li class="divider"></li>
+                            <li ng-click=logout();><a>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        <!-- </div> -->
+        </nav>
         <div class="container">
-            <nav class="navbar navbar-inverse navbar-static-top">
-               <!--  <div class="container"> -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                         </button>
-                        <a class="navbar-brand" href="#">Cronus</a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li ng-class="{ active: isActive('/Home') }"><a href="#/Home">Home</a></li>
-                            <li ng-class="{ active: isActive('/IP') }"><a href="#/IP">IP</a></li>
-                            <li ng-class="{ active: isActive('/Lab') }"><a href="#/Lab">LAB</a></li>
-                            <li ng-class="{ active: isActive('/Document') }"><a href="#/Document">Document</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right" style="margin-right: 30px;">
-                            <li ng-show="!isLoggedIn();"><a href="#/Login">Login</a></li>
-                            <li ng-show="isLoggedIn();" class="dropdown">
-                                <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    Logged in as <b> {{isUserLogin.username}}<span class="caret"></b></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#/Setting">Setting</a></li>
-                                    <li class="divider"></li>
-                                    <li ng-click=logout();><a>Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                <!-- </div> -->
-            </nav>
             <div ng-view></div>
         </div>
         <!-- Import app.js -->
@@ -75,8 +85,15 @@
         <script type="text/javascript" src="js/controllers/home.js"></script>
         <script type="text/javascript" src="js/controllers/ip.js"></script>
         <script type="text/javascript" src="js/controllers/lab.js"></script>
+        <script type="text/javascript" src="js/controllers/deslab.js"></script>
+
         <!-- Import service.js -->
         <script type="text/javascript" src="js/service/services.js"></script>
-
+        <style type="text/css">
+        body {
+            /* min-height: 2000px;*/
+             padding-top: 70px;
+        }
+        </style>
     </body>
 </html>

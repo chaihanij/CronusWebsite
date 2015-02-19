@@ -1,1 +1,51 @@
-lab.html
+<!-- import css -->
+<link href="css/doc/bootstrap.icon-large.css" rel="stylesheet">
+<div class="row">
+    <div class="col-md-8">
+        <h1 style="margin-top: -10px">Lab Research Management</h1>
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+            <div class="table-responsive">
+                  <table class="table table-hover">
+                       <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>IP Address</th>
+                            <th>HOSTNAME</th>
+                            <th>OS</th>
+                                <th>Purpose</th>
+                            <th>Status</th>
+                            <th>User</th>
+                        <th><th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="data in labData" >
+                          <td>{{$index+1}}</td>
+                            <td><a ng-click="viewDescriptionLab(data);">{{data.ip_address}}</a></td>
+                            <td>{{data.hostname}}</td>
+                              <td>{{data.os}}</td>
+                                    <td>{{data.purpose}}</td>
+                        <td>
+                                  <img src="images/red.png" style="width: 30px;height: 30px;" ng-show="!(data.status == 1)">
+                                  <img src="images/green.png" style="width: 30px;height: 30px;" ng-show="(data.status == 1)">
+                        </td>
+                        <td>{{data.uid}}</td>
+                        <td>
+                            <div ng-show="isUserLogin.role == 'admin' || isUserLogin.username == data.uid || data.uid == ''" >
+                                <button id="btnborrow" class="btn btn-default" ng-show="(data.uid == '')" ng-click="borrowLab($index,data);">Borrow</button>
+                                <button id="btnreturn" class="btn btn-default" ng-show="data.uid != '' || (isUserLogin.role == 'admin' && data.uid != '')" ng-click="retrunLab($index,data);">Return</button>
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    </tbody>
+            </table>
+            </div>
+       </div>
+</div>

@@ -1,1 +1,53 @@
-ip.html
+<!-- import css -->
+<link href="css/doc/bootstrap.icon-large.css" rel="stylesheet">
+<div class="row">
+    <div class="col-md-5">
+        <h1 style="margin-top: -10px">IP Management</h1>
+    </div>
+    <div class="col-md-7">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+	        	<table class="table table-striped">
+	            	<thead>
+	              		<tr>
+							<th>#</th>
+							<th>IP Address</th>
+							<th>User</th>
+							<th>Description</th>
+							<th></th>
+                            <th></th>
+	              		</tr>
+	            	</thead>
+	            	<tbody>
+	            		<tr ng-repeat="data in ipData">
+			                <td width="5%">{{$index+1}}</td>
+			                <td width="15%">{{data.ip_address}}</td>
+			                <td width="10%">{{data.uid}}</td>
+                            <td width="40%">
+                                <div ng-show="!showedit">
+                                    {{data.des}}
+                                </div>
+                                <div ng-show="showedit">
+                                    <input type="text" ng-model="data.des" class="form-control">
+                                </div>
+                            </td>
+                            <td width="15%">
+                                <button id="btnborrow" class="btn btn-default" ng-show="!showedit" ng-click="showedit=true">Edit</button>
+                                <button id="btnborrow" class="btn btn-default" ng-show="showedit" ng-click="editIP($index,data);showedit=false">Save</button>
+                                <button id="btnborrow" class="btn btn-default" ng-show="showedit" ng-click="showedit=false;cancal();">Cancel</button>
+                            </td>
+			                <td width="15%">
+	                    		<div ng-show="isUserLogin.role == 'admin' || isUserLogin.username == data.uid || (data.uid == '' ||data.uid == 'NULL' ||data.uid == 'null')" >
+                                    <button id="btnborrow" class="btn btn-default" ng-show="(data.uid == '' ||data.uid == 'NULL' || data.uid == 'null')" ng-click="borrowIP($index,data);">Borrow</button>
+                                    <button id="btnreturn" class="btn btn-default" ng-show="!(data.uid == '' ||data.uid == 'NULL' || data.uid == 'null')" ng-click="retrunIP($index,data);">Return</button>
+                                </div>
+	               			</td>
+	              		</tr>
+	            	</tbody>
+	            </table>
+	        </div>
+    </div>
+</div>

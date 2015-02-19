@@ -20,5 +20,12 @@ module.exports = {
 	},
 	app: {
 		title: 'MEAN.JS - Development Environment'
-	}
+	},
+	mysql : {
+		host     : 'localhost',
+   	 	user     : 'cronus',
+	    password : 'cronus',
+	    port : 3306, 
+	    database:'cronus_db'
+	} 
 };

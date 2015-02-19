@@ -1,0 +1,227 @@
+<div class="raw">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lab</h3>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>IP</th>
+                            <th>Hostname</th>
+                            <th>OS</th>
+                            <th>CUP</th>
+                            <th>Ram</th>
+                            <th>Disk</th>
+                            <th>Purose</th>
+                            <th>Remark</th>
+                            <th>Status</th>
+                            <th>User</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p ng-show="!showedit">{{data.ip_address}}</p>
+                                <input type="text" ng-model="data.ip_address" class="form-control inpuit-text" ng-show="showedit">
+                            </td>
+                            <td>
+                                <p ng-show="!showedit">{{data.hostname}}</p>
+                                <input type="text" ng-model="data.hostname" class="form-control inpuit-text" ng-show="showedit">
+                            </td>
+                            <td>
+                                <p ng-show="!showedit">{{data.os}}</p>
+                                <input type="text" ng-model="data.os" class="form-control inpuit-text" ng-show="showedit">
+                            </td>
+                            <td>
+                                <p ng-show="!showedit">{{data.cpu}}</p>
+                                <input type="text" ng-model="data.cpu" class="form-control inpuit-text" ng-show="showedit">
+                            </td>
+                            <td>
+                                <p ng-show="!showedit">{{data.ram}}</p>
+                                <input type="text" ng-model="data.ram" class="form-control inpuit-text" ng-show="showedit">
+                            </td>
+                            <td>
+                                <p ng-show="!showedit">{{data.disk}}</p>
+                                <input type="text" ng-model="data.disk" class="form-control inpuit-text" ng-show="showedit">
+                            </td>
+                            <td>
+                                <p ng-show="!showedit">{{data.purpose}}</p>
+                                <input type="textarea" ng-model="data.purpose" class="form-control inpuit-text" ng-show="showedit" >
+                                
+                            </td>
+                            <td>
+                                <p ng-show="!showedit">{{data.remark}}</p>
+                                <input type="text" ng-model="data.remark" class="form-control inpuit-text" ng-show="showedit" >
+                                
+                            </td>
+                            <td>
+                                <img src="images/red.png" style="width: 30px;height: 30px;" ng-show="!(data.status == 1) &&!showedit">
+                                <img src="images/green.png" style="width: 30px;height: 30px;" ng-show="(data.status == 1) && !showedit ">
+                                <select ng-model="data.status" ng-show="showedit" class="form-control inpuit-text">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </td>
+                            <td>
+                                <p>{{data.uid}}</p>
+                            </td>
+                            <td>
+                                <div ng-show="isUserLogin.role == 'admin' || isUserLogin.username == data.uid || data.uid == ''">
+                                    <button id="btnborrow" class="btn btn-default" ng-show="(data.uid == '')" ng-click="borrowLab();">Borrow</button>
+                                    <button id="btnreturn" class="btn btn-default" ng-show="data.uid != ''" ng-click="retrunLab();">Return</button>
+                                </div>
+                            </td>
+                            <td>
+                                <button id="btnborrow" class="btn btn-default" ng-show="!showedit" ng-click="showedit=true">Edit</button>
+                                <button id="btnborrow" class="btn btn-default" ng-show="showedit" ng-click="editLab();showedit=false">Save</button>
+                            </td>
+                            <td>
+                                <button id="btnborrow" class="btn btn-default" ng-show="showedit" ng-click="showedit=false;cancal();">Cancel</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="raw">
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">Tools</div>
+            <div class="panel-body">
+                <div class="raw">
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Develop</div>
+                            <div class="panel-body">
+                                <form class="form-inline" ng-repeat="tool in tools.develop">
+                                    <label class="checkbox" >
+                                        <input type="checkbox" ng-click='onUpdateToolStatus(tool)' data-ng-model="tool.status" ng-true-value="1" ng-false-value="0" >&nbsp&nbsp&nbsp<a>{{tool.tools}}</a>
+                                    </label>
+                                </form>
+                                <div ng-show="!showdevelop">
+                                    <a ng-click="showdevelop=true" >add</a>
+                                </div>
+                                <br>
+                                <div ng-show="showdevelop">
+                                    <!-- <form class="form-inline" > -->
+                                    <div class="form-group">
+                                        <input id="inputToolsName" type="text" data-ng-model="etctools.tools" class="form-control" placeholder="Tools Name" >
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="inputToolsName" type="text" data-ng-model="etctools.version" class="form-control" placeholder="Version" >
+                                    </div>
+                                    <div class="form-inline">
+                                        <button type="submit" class="btn btn-primary" id="btnAddTools" data-ng-click="addTools(0, etctools);">Add</button>
+                                        <button type="submit" class="btn btn-primary" id="btnAddTools" data-ng-click="showdevelop=false">Cancel</button>
+                                    </div>
+                                  <!--  </form> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Network</div>
+                            <div class="panel-body">
+                                <form class="form-inline" ng-repeat="tool in tools.network">
+                                    <label class="checkbox" >
+                                        <input type="checkbox" ng-click='onUpdateToolStatus(tool)' data-ng-model="tool.status" ng-true-value="1" ng-false-value="0" >&nbsp&nbsp&nbsp<a>{{tool.tools}}</a>
+                                    </label>
+                                </form>
+                                <div ng-show="!shownetwork">
+                                    <a ng-click="shownetwork=true" >add</a>
+                                </div>
+                                <br>
+                                <div ng-show="shownetwork">
+                                    <!-- <form class="form-inline" > -->
+                                    <div class="form-group">
+                                        <input id="inputToolsName" ng-click='onUpdateToolStatus(tool)' type="text" data-ng-model="etctools.tools" class="form-control" placeholder="Tools Name" >
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="inputToolsName" type="text" data-ng-model="etctools.version" class="form-control" placeholder="Version" >
+                                    </div>
+                                    <div class="form-inline">
+                                        <button type="submit" class="btn btn-primary" id="btnAddTools" data-ng-click="addTools(1, etctools);">Add</button>
+                                        <button type="submit" class="btn btn-primary" id="btnAddTools" data-ng-click="shownetwork=false">Cancel</button>
+                                    </div>
+                                  <!--  </form> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Equinox</div>
+                            <div class="panel-body">
+                                <form class="form-inline" ng-repeat="tool in tools.equinox">
+                                    <label class="checkbox" >
+                                        <input type="checkbox" ng-click='onUpdateToolStatus(tool)' data-ng-model="tool.status" ng-true-value="1" ng-false-value="0" >&nbsp&nbsp&nbsp<a>{{tool.tools}}</a>
+                                    </label>
+                                </form>
+                                <div ng-show="!showequinox">
+                                    <a ng-click="showequinox=true" >add</a>
+                                </div>
+                                <br>
+                                <div ng-show="showequinox">
+                                    <!-- <form class="form-inline" > -->
+                                    <div class="form-group">
+                                        <input id="inputToolsName" type="text" data-ng-model="etctools.tools" class="form-control" placeholder="Tools Name" >
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="inputToolsName" type="text" data-ng-model="etctools.version" class="form-control" placeholder="Version" >
+                                    </div>
+                                    <div class="form-inline">
+                                        <button type="submit" class="btn btn-primary" id="btnAddTools" data-ng-click="addTools(2, etctools);">Add</button>
+                                        <button type="submit" class="btn btn-primary" id="btnAddTools" data-ng-click="showequinox=false">Cancel</button>
+                                    </div>
+                                  <!--  </form> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">ETC</div>
+                            <div class="panel-body">
+                                <form class="form-inline" ng-repeat="tool in tools.etc">
+                                    <label class="checkbox" >
+                                        <input type="checkbox" ng-click='onUpdateToolStatus(tool)' data-ng-model="tool.status" ng-true-value="1" ng-false-value="1" >&nbsp&nbsp&nbsp<a>{{tool.tools}}</a>
+                                    </label>
+                                </form>
+                                <div ng-show="!showetc">
+                                    <a ng-click="showetc=true" >add</a>
+                                </div>
+                                <br>
+                                <div ng-show="showetc">
+                                    <!-- <form class="form-inline" > -->
+                                    <div class="form-group">
+                                        <input id="inputToolsName" type="text" data-ng-model="etctools.tools" class="form-control" placeholder="Tools Name" >
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="inputToolsName" type="text" data-ng-model="etctools.version" class="form-control" placeholder="Version" >
+                                    </div>
+                                    <div class="form-inline">
+                                        <button type="submit" class="btn btn-primary" id="btnAddTools" data-ng-click="addTools(3, etctools);">Add</button>
+                                        <button type="submit" class="btn btn-primary" id="btnAddTools" data-ng-click="showetc=false">Cancel</button>
+                                    </div>
+                                  <!--  </form> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ <!--                <div class="row">
+                    <div class="col-md-5 col-md-offset-5">
+                        <button style="width: 200px"  class="btn btn-success" ng-click="updateToolsAll();">UPDATE</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+

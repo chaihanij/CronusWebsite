@@ -18,5 +18,13 @@ module.exports = {
 		}
 	},
 	log4js : { appenders: [{ type: 'file', filename: 'log/app.log' }]},
-	log4jsLevle : 'ERROR'
+	log4jsLevle : 'ERROR',
+	mysql : {
+		host     : '10.239.23.178',
+   	 	user     : 'cronus',
+	    password : 'cronus',
+	    port : 3306, 
+	    database:'cronus_db',
+	    multipleStatements: true
+	} 
 };

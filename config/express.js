@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.resolve('./public')));
-app.use('/api', expressJwt({secret: config.secret }));
+app.use('/api/documnet', expressJwt({secret: config.secret }));
 app.use(multer({ dest: './public/file/uploads'}))
 // set Routers
 var routes = require('../app/routes/routes');

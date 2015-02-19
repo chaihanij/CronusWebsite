@@ -64,7 +64,7 @@ cronusweb.run(['$rootScope', 'AuthService', '$location', function($rootScope, Au
 cronusweb.config(function ($routeProvider, $locationProvider, $httpProvider) { 
     $routeProvider.when('/Home', {
         templateUrl: '/partials/home',
-        controller: 'HomeCotroller',
+        controller: 'HomeController',
         requireLogin: false
     }).when('/Login',{
     	  templateUrl: '/partials/login',
@@ -72,16 +72,16 @@ cronusweb.config(function ($routeProvider, $locationProvider, $httpProvider) {
         requireLogin: false
     }).when('/IP',{
         templateUrl: '/partials/ip',
-        controller: 'IPCotroller',
-        requireLogin: false
+        controller: 'IPController',
+        requireLogin: true
     }).when('/Document',{
         templateUrl: '/partials/doc',
         controller: 'DocController',
-        requireLogin: false
+        requireLogin: true
     }).when('/Lab',{
         templateUrl: '/partials/lab',
-        controller: 'LabCotroller',
-        requireLogin: false
+        controller: 'LabController',
+        requireLogin: true
     }).when('/Error',{
         templateUrl: '/partials/error',
         controller: 'MainCtrl',
@@ -89,7 +89,11 @@ cronusweb.config(function ($routeProvider, $locationProvider, $httpProvider) {
     }).when('/Setting',{
         templateUrl: '/partials/setting',
         controller: 'MainCtrl',
-        requireLogin: false
+        requireLogin: true
+    }).when('/Lab/description',{
+        templateUrl: '/partials/descriptionlab',
+        controller: 'DesController',
+        requireLogin: true
     });
     $routeProvider.otherwise({
         redirectTo: '/Home'
@@ -146,6 +150,12 @@ cronusweb.controller('MainCtrl', function ($scope, $rootScope,$location, $window
       delete $window.sessionStorage.token;
       $location.path('/Login');
     };
+
     $scope.erroeCode =  $rootScope.erroeCode;
     $scope.erroeMessage =  $rootScope.erroeMessage;
+    if ($rootScope.erroeCode == null || $rootScope.erroeCode == undefined ||  $rootScope.erroeMessage == null || $rootScope.erroeMessage == undefined) {
+        $scope.erroeCode =  500;
+        $scope.erroeMessage = "Internal Error"
+    }
+  
 });
