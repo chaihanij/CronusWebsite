@@ -254,7 +254,7 @@ angular.module('cronusweb').controller('DesController', function($scope, $rootSc
 angular.module('cronusweb').service('MyGetLabService', function($http){
     this.getLab = function(searchObject) {
         var configHTTP = {
-            url: '/api/lab/getlab.htm',
+            url: 'api/lab/getlab.htm',
             method: 'POST',
             dataType: 'json',
             headers: {
@@ -266,7 +266,7 @@ angular.module('cronusweb').service('MyGetLabService', function($http){
     }
     this.getTools = function(searchObject){
         var configHTTP = {
-            url: '/api/lab/gettools.htm',
+            url: 'api/lab/gettools.htm',
             method: 'POST',
             dataType: 'json',
             headers: {
@@ -281,7 +281,7 @@ angular.module('cronusweb').service('MyGetLabService', function($http){
         data.searchObject =searchObject;
         data.tools = tools;
         var configHTTP = {
-            url: '/api/lab/updatetools.htm',
+            url: 'api/lab/updatetools.htm',
             method: 'POST',
             dataType: 'json',
             headers: {
@@ -296,7 +296,7 @@ angular.module('cronusweb').service('MyGetLabService', function($http){
         data.searchObject =searchObject;
         data.tools = tools;
         var configHTTP = {
-            url: '/api/lab/updatetoolsstatus.htm',
+            url: 'api/lab/updatetoolsstatus.htm',
             method: 'POST',
             dataType: 'json',
             headers: {

@@ -83,7 +83,7 @@ angular.module('cronusweb').controller('IPController', function($scope, $rootSco
 angular.module('cronusweb').service('MyIPService', function($http){ 
     this.getAllIP = function() {
         var configHTTP = {
-            url: '/api/ip/getip.htm',
+            url: 'api/ip/getip.htm',
             method: 'get',
             dataType: 'json',
             headers: {
@@ -94,7 +94,7 @@ angular.module('cronusweb').service('MyIPService', function($http){
     }
     this.borrowIP  = function (data) {
         var configHTTP = {
-            url: '/api/ip/borrowip.htm',
+            url: 'api/ip/borrowip.htm',
             method: 'POST',
             dataType: 'json',
             headers: {
@@ -106,7 +106,7 @@ angular.module('cronusweb').service('MyIPService', function($http){
     }
     this.returnIP  = function (data) {
         var configHTTP = {
-            url: '/api/ip/returnip.htm',
+            url: 'api/ip/returnip.htm',
             method: 'POST',
             dataType: 'json',
             headers: {
@@ -118,7 +118,7 @@ angular.module('cronusweb').service('MyIPService', function($http){
     }
     this.updateDescriptionIP  = function (data) {
         var configHTTP = {
-            url: '/api/ip/updatedescriptionip.htm',
+            url: 'api/ip/updatedescriptionip.htm',
             method: 'POST',
             dataType: 'json',
             headers: {

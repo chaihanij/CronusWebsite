@@ -63,35 +63,35 @@ cronusweb.run(['$rootScope', 'AuthService', '$location', function($rootScope, Au
 }]);
 cronusweb.config(function ($routeProvider, $locationProvider, $httpProvider) { 
     $routeProvider.when('/Home', {
-        templateUrl: '/partials/home',
+        templateUrl: 'partials/home',
         controller: 'HomeController',
         requireLogin: false
     }).when('/Login',{
-    	  templateUrl: '/partials/login',
+    	  templateUrl: 'partials/login',
         controller: 'MainCtrl',
         requireLogin: false
     }).when('/IP',{
-        templateUrl: '/partials/ip',
+        templateUrl: 'partials/ip',
         controller: 'IPController',
         requireLogin: true
     }).when('/Document',{
-        templateUrl: '/partials/doc',
+        templateUrl: 'partials/doc',
         controller: 'DocController',
         requireLogin: true
     }).when('/Lab',{
-        templateUrl: '/partials/lab',
+        templateUrl: 'partials/lab',
         controller: 'LabController',
         requireLogin: true
     }).when('/Error',{
-        templateUrl: '/partials/error',
+        templateUrl: 'partials/error',
         controller: 'MainCtrl',
         requireLogin: false
     }).when('/Setting',{
-        templateUrl: '/partials/setting',
+        templateUrl: 'partials/setting',
         controller: 'MainCtrl',
         requireLogin: true
     }).when('/Lab/description',{
-        templateUrl: '/partials/descriptionlab',
+        templateUrl: 'partials/descriptionlab',
         controller: 'DesController',
         requireLogin: true
     });
@@ -121,7 +121,7 @@ cronusweb.controller('MainCtrl', function ($scope, $rootScope,$location, $window
     // function login 
     $scope.attemptLogin = function (credentials) {
         var url = $rootScope.oldUrl;
-        $http.post('/login.htm', credentials).success(function (data, status, headers, config) {
+        $http.post('login.htm', credentials).success(function (data, status, headers, config) {
   	        if (data.token != undefined && data.token != null) {
   	            $window.sessionStorage.token = data.token;
   	            var dataProfile = JSON.parse(url_base64_decode(data.token.split('.')[1]));

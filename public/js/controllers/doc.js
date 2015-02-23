@@ -15,7 +15,7 @@ function($scope, $rootScope, $location, $http, $window, $modal, $log, UserLoginS
    	var catalogings;
    	var urlPath = [ "Home" ];
     $scope.urlPath = urlPath;
-   	$http.get('/api/documnet/home.htm').success(function (data, status, headers, config) {
+   	$http.get('api/documnet/home.htm').success(function (data, status, headers, config) {
            catalogings = data.Listfiles;
            urlPath = data.urlPath
            $scope.urlPath = urlPath;
@@ -37,7 +37,7 @@ function($scope, $rootScope, $location, $http, $window, $modal, $log, UserLoginS
                } while(index >= i);
            }
            var configHTTP = {
-               url: '/api/documnet/getfolderfromurl.htm',
+               url: 'api/documnet/getfolderfromurl.htm',
                method: 'POST',
                dataType: 'json',
                headers: {
@@ -68,7 +68,7 @@ function($scope, $rootScope, $location, $http, $window, $modal, $log, UserLoginS
        	dataFolder.folder = cataloging;
            dataFolder.user = UserLoginService.getUser();
        	var configHTTP = {
-       	 	url: '/api/documnet/folder.htm',
+       	 	url: 'api/documnet/folder.htm',
                method: 'POST',
                dataType: 'json',
                headers: {
@@ -101,7 +101,7 @@ function($scope, $rootScope, $location, $http, $window, $modal, $log, UserLoginS
      			dataFolder.folder = cataloging;
      			dataFolder.urlpath = $scope.urlPath;
      			var configHTTP = {
-       	 		url: '/api/documnet/removefile.htm',
+       	 		url: 'api/documnet/removefile.htm',
               		method: 'POST',
                	dataType: 'json',
               		 headers: {
@@ -135,7 +135,7 @@ function($scope, $rootScope, $location, $http, $window, $modal, $log, UserLoginS
    	  			dataFolder.folder = cataloging;
    	  			dataFolder.newName = editName;
    	  			var configHTTP = {
-   	    	 		url: '/api/documnet/renamefile.htm',
+   	    	 		url: 'api/documnet/renamefile.htm',
    	           		method: 'POST',
    	            	dataType: 'json',
    	          		headers: {
@@ -175,7 +175,7 @@ function($scope, $rootScope, $location, $http, $window, $modal, $log, UserLoginS
              dataFolder.foldername = folderName.trim();
              dataFolder.urlpath = url;
              var configHTTP = {
-                 url: '/api/documnet/createfolder.htm',
+                 url: 'api/documnet/createfolder.htm',
                  method: 'POST',
                  dataType: 'json',
                  headers: {
@@ -252,7 +252,7 @@ function($scope, $rootScope, $location, $http, $window, $modal, $log, UserLoginS
             xhr.addEventListener("load", uploadComplete, false);
             xhr.addEventListener("error", uploadFailed, false);
             xhr.addEventListener("abort", uploadCanceled, false);
-            xhr.open("POST", '/api/documnet/uploadfiles.htm',true);
+            xhr.open("POST", 'api/documnet/uploadfiles.htm',true);
            
             xhr.setRequestHeader('Authorization', 'Bearer ' + $window.sessionStorage.token);
             xhr.send(fd);

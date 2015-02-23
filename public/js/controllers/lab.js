@@ -10,7 +10,7 @@ angular.module('cronusweb').controller('LabController', function($scope, $rootSc
     $scope.isUserLogin = UserLoginService.getUser();
     // console.log($scope.isUserLogin);
 
-    $http.get('/api/lab/getlistlab.htm').success(function (data, status, headers, config) {
+    $http.get('api/lab/getlistlab.htm').success(function (data, status, headers, config) {
         console.log(data);
         $scope.labData = data;
     }).error(function (data, status, headers, config) {
@@ -24,7 +24,7 @@ angular.module('cronusweb').controller('LabController', function($scope, $rootSc
             dataPOST.user = $scope.isUserLogin;
             dataPOST.lab = data;
             var configHTTP = {
-                url: '/api/lab/borrowlab.htm',
+                url: 'api/lab/borrowlab.htm',
                 method: 'POST',
                 dataType: 'json',
                 headers: {
@@ -50,7 +50,7 @@ angular.module('cronusweb').controller('LabController', function($scope, $rootSc
             dataPOST.lab = data;
             console.log();
             var configHTTP = {
-                url: '/api/lab/returnlab.htm',
+                url: 'api/lab/returnlab.htm',
                 method: 'POST',
                 dataType: 'json',
                 headers: {
